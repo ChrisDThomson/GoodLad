@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://pf6lmxopqw3r"]
+
+[ext_resource type="Texture2D" uid="uid://icgvvaamfsym" path="res://assets/techy_guy_thats_probably_named_jeremy.png" id="1_7p1wg"]
+[ext_resource type="Script" uid="uid://cds75oalemufy" path="res://assets/scripts/components/MoveComponent.gd" id="2_eono7"]
+[ext_resource type="Script" uid="uid://ble6xwr2iyohi" path="res://assets/scripts/components/MoveInputComponent.gd" id="3_blfeo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7p1wg"]
+radius = 61.0
+height = 422.0
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7p1wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7p1wg")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_eono7")
+actor = NodePath("..")
+speed = 1000.0
+metadata/_custom_type_script = "uid://cds75oalemufy"
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_blfeo")
+move_component = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://ble6xwr2iyohi"
